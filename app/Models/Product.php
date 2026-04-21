@@ -5,41 +5,42 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;
-use Pest\Support\Str;
+use Illuminate\Support\Str;
 
 #[Fillable([
-    'parent_id',
+    'category_id',
     'name',
     'slug',
-    'description',
+    'description', 
+    'short_description',
+    'price',
+    'sale_price',
+    'sku',
+    'stock',
     'image',
-    'level',
-    'position',
+    'featured',
     'status',
+    'views',
+    'sales_count',
     'meta_title',
     'meta_description',
     'meta_keywords'
     ])]
 #[Hidden(['id', 'created_at', 'updated_at'])]
-class Category extends Model
+class Product extends Model
 {
-    public function parent()
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
-
-    public function children()
-    {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function($category) {
-            if (empty($category->slug)) {
-                $category->slug = Str::slugify($category->name);
+        static::creating(function($product) {
+            if (empty($product->slug)) {
+                $product->slug = Str::slugify($product->name);
             }
         });
     }
