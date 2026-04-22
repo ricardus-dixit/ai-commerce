@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\AttributeValues\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,7 +12,7 @@ class AttributeValueForm
     {
         return $schema
             ->components([
-                TextInput::make('attribute_id')
+                Select::make('attribute_id')
                     ->label('Attribute')
                     ->relationship('attribute', 'name')
                     ->searchable()
