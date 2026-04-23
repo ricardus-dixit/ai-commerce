@@ -46,6 +46,15 @@ class ProductForm
                                 ->searchable()
                                 ->preload(),
 
+                            Select::make('attributesValues')
+                                ->label('Attributes')
+                                ->multiple()
+                                ->relationship('attributeValues', 'value')
+                                ->getOptionLabelFromRecordUsing(fn($record) =>
+                                    $record->attribute->name . ': ' . $record->value)
+                                ->preload()
+                                ->searchable(),
+
                             TextInput::make('sku')
                                 ->required(),
 
