@@ -18,20 +18,24 @@ class BannersTable
             ->columns([
                 ImageColumn::make('image')
                     ->disk('public')
-                    ->imageHeight(50),
+                    ->imageHeight(60),
 
                 TextColumn::make('title')
-                    ->searchable()
-                    ->limit(30),
+                    ->limit(30)
+                    ->searchable(),
 
                 TextColumn::make('type')
                     ->badge()
-                    ->color(fn($state) => match ($state) {
+                    ->color(fn($state) => match($state) {
                         'slider' => 'success',
                         'grid' => 'info'
                     }),
+
+                TextColumn::make('link')
+                    ->limit(30)
+                    ->toggleable(isToggledHiddenByDefault:true),
+
                 TextColumn::make('position')
-                    ->numeric()
                     ->sortable(),
 
                 IconColumn::make('status')
