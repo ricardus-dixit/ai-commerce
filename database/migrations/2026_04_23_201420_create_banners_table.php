@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('image');
+            $table->string('link')->nullable();
             $table->enum('type', ['slider', 'grid'])->default('slider');
             $table->integer('position')->default(0);
             $table->boolean('status')->default(1);
