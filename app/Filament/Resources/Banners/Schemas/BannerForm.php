@@ -24,8 +24,13 @@ class BannerForm
                     ->directory('banners')
                     ->required(),
 
+                TextInput::make('link')
+                    ->label('Redirect URL')
+                    ->url()
+                    ->nullable(),
+
                 Select::make('type')
-                    ->label('Type')
+                    ->label('Banner Type')
                     ->options(['slider' => 'Slider', 'grid' => 'Grid'])
                     ->default('slider')
                     ->required(),
@@ -35,7 +40,7 @@ class BannerForm
                     ->default(0),
 
                 Toggle::make('status')
-                    ->default(true),
+                    ->required(),
             ]);
     }
 }
